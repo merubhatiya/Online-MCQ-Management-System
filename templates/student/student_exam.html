@@ -1,0 +1,66 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{%load static%}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<br><br>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Exams</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+
+          <th>Exam Name</th>
+          <th>Exam Date</th>
+          <th>Exam Time</th>
+          <th>Take Exam</th>
+        </tr>
+      </thead>
+      {% for course in courses %}
+      {% if course.can_take_exam %}
+
+      <tr>
+       <td> {{ course.course_name }}</td>
+       <td> {{ course.s_date }}</td>
+       <td> {{ course.s_time }}</td>
+       <td>
+      
+        {% if course.already_taken %}
+          <span class="label label-success">Already taken</span>
+        {% else %}
+          <a class="btn btn-danger btn-xs" href="{% url 'take-exam' course.id  %}"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+        {% endif %}
+      {% else %}
+        
+      {% endif %}
+    </td>
+  </tr>
+{% endfor %}
+     </table>
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}

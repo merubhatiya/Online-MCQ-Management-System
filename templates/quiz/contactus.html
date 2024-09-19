@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+
+</head>
+
+<body>
+
+  {% include "quiz/navbar.html" %}
+  <br><br>
+
+  <center>
+    <h3 class='alert alert-success'>Send Us Your Valuable Feedback !</h3>
+
+    
+    
+    <form method="POST" autocomplete="off">
+      <!-- Very Important csrf Token -->
+      {% csrf_token %}
+      <div class="form-group">
+        <p><br><br>
+        <h3><b>Email Address</b></Address> : student@aau.in</h3>
+        </p>
+        <br>
+        <p>
+          <h3><b>Phone Number</b> : 9683484334</h3>
+          </p>
+          <br><br><br><br><br><br><br><br>
+      </div>
+    </form>
+  </center>
+
+  {% include "quiz/footer.html" %}
+</body>
+
+</html>

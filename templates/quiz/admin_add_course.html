@@ -2,6 +2,13 @@
 {% load widget_tweaks %}
 {% block content %}
 <head>
+  <script>
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +23,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   a:link {
         text-decoration: none;
-      }
+         }
 
       .container1 {
             max-width: 800px;

@@ -31,7 +31,13 @@
 
   </style>
 
+<script>
 
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+  history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+</script>
 </head>
 
 <br><br>

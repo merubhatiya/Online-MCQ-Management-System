@@ -163,6 +163,13 @@
   <!--header area start-->
   
   <header>
+    <script>
+
+      document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+          });
+          history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+        </script>
     
     <label for="check">
       <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>

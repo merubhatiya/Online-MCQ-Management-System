@@ -3,6 +3,13 @@
 <html lang="en">
 
 <head>
+  <script>
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,9 +46,9 @@
 
       <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav">
-          <a style="
+          <!-- <a style="
           padding-left: 30px;
-      " href="/" class="nav-item nav-link active">Home</a>
+      " href="/" class="nav-item nav-link active">Home</a> -->
 
           <!-- <a href="/teacher/teacherclick" class="nav-item nav-link">Teacher</a> -->
           <!-- <a href="/student/studentclick" class="nav-item nav-link">Student</a> -->

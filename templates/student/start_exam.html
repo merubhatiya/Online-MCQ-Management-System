@@ -3,6 +3,13 @@
 {%load static%}
 
 <head>
+  <script>
+
+document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -119,9 +126,9 @@
     <!-- Exam Header and Timer -->
     <hr style="border-top: 1px solid #ccc; margin-top: 1px;">
     <div>
-        <h2 style="font-size: larger; text-align: center;"><b>Exam: {{ course.course_name }}</b></h2>
+        <h2 style="font-size: larger;><b style="color: #ff0000;">Exam: {{ course.course_name }}</b></h2>
         <div class="timer-container">
-            <h1 style="font-size: large;"><b>Exam Note: {{ course.exam_name }}</b></h1>
+           
             <h2 id="timer" style="color: #ff0000;"></h2>
             <button id="submit-button" class="btn btn-success" type="submit">End Exam</button>
         </div>

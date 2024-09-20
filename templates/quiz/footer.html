@@ -3,7 +3,13 @@
 
 <head>
 
+  <script>
 
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 

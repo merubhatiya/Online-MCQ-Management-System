@@ -3,6 +3,13 @@
 {%load static%}
 
 <head>
+    <script>
+
+        document.addEventListener("contextmenu", function (e) {
+              e.preventDefault();
+            });
+            history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+          </script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -30,8 +37,9 @@
                     <p class="card-text">
                         </p><ul style="list-style:decimal;">
                             
-                            <li>Exam Name : {{course.course_name}}</li>
+                           
                             <li>Exam Note : {{course.exam_name}}</li>
+                            <li>Exam Name : {{course.course_name}}</li>
                             <li>Total Question : {{total_questions}}</li>
                             <li>Total Marks : {{total_marks}}</li>
                             <li>Time : {{course.d_time}} Minutes</li>

@@ -2,6 +2,13 @@
 {% load widget_tweaks %}
 <html lang="en" dir="ltr">
   <head>
+    <script>
+
+        document.addEventListener("contextmenu", function (e) {
+          e.preventDefault();
+        });
+        history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+      </script>
     <meta charset="utf-8">
     <title></title>
     <style media="screen">

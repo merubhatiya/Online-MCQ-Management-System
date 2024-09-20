@@ -3,6 +3,20 @@
 <html lang="en" dir="ltr">
 
 <head>
+  <script>
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
+  <script>
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 

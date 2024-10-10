@@ -109,7 +109,7 @@
     {% if course.can_take_exam %}
     <div class="col-md-4 col-xl-6">
       {% if course.already_taken %}
-          
+      <a href="{% url 'check-marks' course.id  %} "> 
          
             <div class="card bg-c-yellow order-card">
               <div class="card-block"> 
@@ -117,10 +117,11 @@
                 <h1 class="m-b-20" style="text-decoration: none;color:rgb(8, 248, 4);">Already taken</h6>  
                 </div>        
                 <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
-                <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}</h6>
-                <h3 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_time }}</h6>    
+                <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}
+                {{ course.s_time }}</h6>    
               </div>
             </div>
+          </a>
         {% else %}                                              
         
       <a href="{% url 'take-exam' course.id  %}"> 

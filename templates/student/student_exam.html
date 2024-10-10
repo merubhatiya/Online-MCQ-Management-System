@@ -11,29 +11,136 @@
         history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
       </script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+   
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
 
+    .order-card {
+      color: rgb(255, 255, 255);
+    }
+
+    .bg-c-blue {
+      background: #04868f;
+    }
+
+    .bg-c-green {
+      background:#4C51BF;
+    }
+
+    .bg-c-yellow {
+      background: #f185f3;
+    }
+
+    .bg-c-pink {
+      background: #760ff4;
+    }
+
+
+    .card {
+      
+          -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      margin-bottom:30px;
+      width: 510px;
+      height: 210px;
+      border: 1px solid black;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-block {
+      padding: 35px;
+    }
+
+    .order-card i {
+      font-size: 50px;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+    header {
+    left: 0px;
+    right: 0px;
+  }
+  </style>
   <style media="screen">
     a:link {
       text-decoration: none;
     }
 
-    h6 {
+    h1 {
+      text-align: center;
+      color: black;
+    }
+    h2 {
       text-align: center;
     }
+    h3 {
+      text-align: center;
+    }
+   
 
     .row {
-      margin: 100px;
+      margin: 20px;
     }
   </style>
 </head>
 <br><br>
 <div class="container">
+
+  <div class="row">
+      
+    {% for course in courses %}
+    {% if course.can_take_exam %}
+    <div class="col-md-4 col-xl-6">
+      {% if course.already_taken %}
+          
+         
+            <div class="card bg-c-yellow order-card">
+              <div class="card-block"> 
+                <div style="border: #760ff4;">
+                <h1 class="m-b-20" style="text-decoration: none;color:rgb(8, 248, 4);">Already taken</h6>  
+                </div>        
+                <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
+                <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}</h6>
+                <h3 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_time }}</h6>    
+              </div>
+            </div>
+        {% else %}                                              
+        
+      <a href="{% url 'take-exam' course.id  %}"> 
+      <div class="card bg-c-yellow order-card">
+        <div class="card-block">           
+          <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
+          <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}</h6>
+          <h3 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_time }}</h6>    
+        </div>
+      </div>
+    </a> {% endif %} 
+    </div>  
+    {% endif %}  
+    {% endfor %}
+<!--   
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h6 class="panel-title">Exams</h6>
     </div>
+      
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
@@ -55,7 +162,7 @@
       
         {% if course.already_taken %}
           <span class="label label-success">Already taken</span>
-        {% else %}
+        {% else %}                                                                                                                                     
           <a class="btn btn-danger btn-xs" href="{% url 'take-exam' course.id  %}"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
         {% endif %}
       {% else %}
@@ -66,8 +173,9 @@
 {% endfor %}
      </table>
     </table>
-  </div>
+  </div> -->
 </div>
 
 <br><br><br><br><br><br>
+
 {% endblock content %}

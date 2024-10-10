@@ -1,82 +1,173 @@
 <!DOCTYPE html>
 {% load widget_tweaks %}
 <html lang="en" dir="ltr">
-  <head>
-    <script>
-
-      document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-          });
-          history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
-        </script>
+<head>
     <meta charset="utf-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
-
-        form{
-           margin: 50px; 
-          
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #b92b27, #1565c0);
         }
-
+        .container {
+            max-width: 70%;
+            margin: 10% auto;
+            padding: 10px;
+            background-color: #fff;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+        .btn-primary {
+            background-color: #337ab7;
+            border-color: #2e6da4;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #23527c;
+            border-color: #1d4e7a;
+        }
     </style>
-    
-  </head>
-  <body>
-    {% include "quiz/navbar.html" %}
-
-
-<br><br><br>
-<h3 style="text-align: center;color: red;">My Profile</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="username">Email</label>
-        {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="Email" value="{{ request.user.username }}" %}
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Password</label>
-        {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="password" %}
-      </div>
+</head>
+<body>
+    <div class="container">
+        <h3 style="text-align: center; color: #337ab7;">My Profile</h3>
+        <form method="POST" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="username">Email</label>
+                    {% render_field userForm.username|attr:'required:true' class="form-control" placeholder="Email" value="{{ request.user.username }}" %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="password" %}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="first_name">First Name</label>
+                    {% render_field userForm.first_name|attr:'required:true' class="form-control" placeholder="First Name" value="{{ request.user.first_name }}" %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name">Last Name</label>
+                    {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" value="{{ request.user.last_name }}" %}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="mobile">Mobile</label>
+                    {% render_field studentForm.mobile|attr:'required:true' class="form-control" placeholder="Mobile" value="{{ student.mobile }}" %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Address</label>
+                    {% render_field studentForm.address|attr:'required:true' class="form-control" placeholder="Address" value="{{ student.address }}" %}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="profile_pic">Profile Picture</label>
+                    {% render_field studentForm.profile_pic class="form-control" placeholder="" %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
     </div>
-
-    <div class="form-row">
-      
-        <div class="form-group col-md-6">
-          <label for="first_name">First Name</label>
-          {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="First Name" value="{{ request.user.first_name }}" %}
-        </div>
-        <div class="form-group col-md-6">
-          <label for="last_name">Last Name</label>
-          {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" value="{{ request.user.last_name }}" %}
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="mobile">Mobile</label>
-          {% render_field studentForm.mobile|attr:'required:true'  class="form-control" placeholder="Mobile" value="{{ student.mobile }}" %}
-        </div>
-        <div class="form-group col-md-6">
-          <label for="address">Address</label>
-          {% render_field studentForm.address|attr:'required:true'  class="form-control" placeholder="Address" value="{{ student.address }}" %}
-        </div>
-      </div>
-
-      <div class="form-row">
-       
-        <div class="form-group col-md-12">
-          <label for="profile_pic">Profile Picture</label>
-          {% render_field studentForm.profile_pic|attr:'required:false' class="form-control" placeholder="" %}
-        </div>
-        
-      </div>
-
-
-    <button type="submit" class="btn btn-primary">Update Profile</button>
-  </form>
 
 
 <br><br>
-{% include "quiz/footer.html" %}
+  <script>
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.querySelector('#id_username').value;
+    const password = document.querySelector('#id_password').value;
+    const firstName = document.querySelector('#id_first_name').value;
+    const lastName = document.querySelector('#id_last_name').value;
+    const mobile = document.querySelector('#id_mobile').value;
+    const address = document.querySelector('#id_address').value;
+    const profilePic = document.querySelector('#id_profile_pic').value;
+
+    // Email validation
+    if (!validateEmail(username)) {
+      alert('Invalid email address');
+      return;
+    }
+
+    // Password strength validation
+    if (!validatePassword(password)) {
+      alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number');
+      return;
+    }
+
+    // Phone number format validation
+    if (!validateMobile(mobile)) {
+      alert('Invalid mobile number');
+      return;
+    }
+
+    // Address format validation
+    if (!validateAddress(address)) {
+      alert('Invalid address');
+      return;
+    }
+
+    // Profile picture validation
+    if (!validateProfilePic(profilePic)) {
+      alert('Invalid profile picture');
+      return;
+    }
+
+    // If all validations pass, submit the form
+    form.submit();
+  });
+
+  // Email validation function
+  function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  // Password strength validation function
+  function validatePassword(password) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  // Phone number format validation function
+  function validateMobile(mobile) {
+    const mobileRegex =  /^[\d\s\(\)\-\.]{8,20}$/;
+    return mobileRegex.test(mobile);
+  }
+
+  // Address format validation function
+  function validateAddress(address) {
+    // You can add your own address format validation logic here
+    return true;
+  }
+
+  // Profile picture validation function
+  function validateProfilePic(profilePic) {
+    // You can add your own profile picture validation logic here
+    return true;
+  }
+</script>
+
   </body>
 </html>

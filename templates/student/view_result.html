@@ -35,29 +35,22 @@
       <h6 class="panel-title">View Marks</h6>
     </div>
     <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-
-          <th>Exam Name</th>
-          
-          <th>View Marks</th>
-        </tr>
-      </thead>
+     
       {% for t in courses %}
-      <tr>
+      <tr">
 
-        <td> {{t.course_name}}</td>
+        <td style="font-size: 18px; " >
         
-        <td><a class="btn btn-danger btn-xs" href="{% url 'check-marks' t.id  %}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-      </tr>
-      
-    {% endfor %}
-    </table>
-    
+        <a  href="{% url 'check-marks' t.id  %} " style="color: blue;">
 
+          {{t.course_name}}
+          <b>({{t.s_date}}{{t.s_time}})</b>
+        </a></td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
 </div>
-
 
 <br><br><br><br><br><br>
 {% endblock content %}

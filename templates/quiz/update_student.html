@@ -65,7 +65,84 @@
     <input type="submit" value="Update">
   </form>
 </div>
+<script>
+  const form = document.querySelector('form');
 
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.querySelector('#id_username').value;
+    const password = document.querySelector('#id_password').value;
+    const firstName = document.querySelector('#id_first_name').value;
+    const lastName = document.querySelector('#id_last_name').value;
+    const mobile = document.querySelector('#id_mobile').value;
+    const address = document.querySelector('#id_address').value;
+    const profilePic = document.querySelector('#id_profile_pic').value;
+
+    // Email validation
+    if (!validateEmail(username)) {
+      alert('Invalid email address');
+      return;
+    }
+
+    // Password strength validation
+    if (!validatePassword(password)) {
+      alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number');
+      return;
+    }
+
+    // Phone number format validation
+    if (!validateMobile(mobile)) {
+      alert('Invalid mobile number');
+      return;
+    }
+
+    // Address format validation
+    if (!validateAddress(address)) {
+      alert('Invalid address');
+      return;
+    }
+
+    // Profile picture validation
+    if (!validateProfilePic(profilePic)) {
+      alert('Invalid profile picture');
+      return;
+    }
+
+    // If all validations pass, submit the form
+    form.submit();
+  });
+
+  // Email validation function
+  function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  // Password strength validation function
+  function validatePassword(password) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  // Phone number format validation function
+  function validateMobile(mobile) {
+    const mobileRegex =  /^[\d\s\(\)\-\.]{8,20}$/;
+    return mobileRegex.test(mobile);
+  }
+
+  // Address format validation function
+  function validateAddress(address) {
+    // You can add your own address format validation logic here
+    return true;
+  }
+
+  // Profile picture validation function
+  function validateProfilePic(profilePic) {
+    // You can add your own profile picture validation logic here
+    return true;
+  }
+</script>
 
 
 <br><br><br><br><br><br><br><br>

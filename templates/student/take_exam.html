@@ -15,9 +15,9 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style >
     .jumbotron {
-     background-color: #f7f5f5;
+     background-color: #4274f5;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 30px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 </style>
@@ -25,18 +25,18 @@
 </head>
 <br><br>
 <div class="container my-4">
-    <div class="jumbotron">
+    <div class="jumbotron"  style="border-radius: 30px;">
 
 	      <h3 class="text-info text-center"></h3>
 
         <div class="row">
 
             <div class="card border-info mx-4 my-4">
-                <div class="card-body text-info">
-                   <h4 class="card-title">Exam Details :</h4>
+                <div class="card-body text-info" style="color: black; font-size: 25px;">
+                   <h4 class="card-title" style="font-size: 27px; color: rgb(11, 11, 11);"><b>Exam Details :</b></h4>
                     <p class="card-text">
                         </p><ul style="list-style:decimal;">
-                            
+                            <b>
                            
                             <li>Exam Note : {{course.exam_name}}</li>
                             <li>Exam Name : {{course.course_name}}</li>
@@ -44,7 +44,7 @@
                             <li>Total Marks : {{total_marks}}</li>
                             <li>Time : {{course.d_time}} Minutes</li>
                         </ul>
-                        
+                        </b>
 
                         <input type="text" id="secretKeyInput" placeholder="Enter Secret Key" style="height: 33px; border: 12px;border-color: rgb(214, 146, 44); width: 220px ;border-radius: 3px;">
                     <br>

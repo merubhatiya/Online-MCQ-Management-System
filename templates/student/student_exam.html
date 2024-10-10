@@ -21,58 +21,41 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <style type="text/css">
-    a:link {
-      text-decoration: none;
-    }
-
-    .order-card {
-      color: rgb(255, 255, 255);
-    }
-
-    .bg-c-blue {
-      background: #04868f;
-    }
-
-    .bg-c-green {
-      background:#4C51BF;
-    }
-
-    .bg-c-yellow {
-      background: #f185f3;
-    }
-
-    .bg-c-pink {
-      background: #760ff4;
-    }
+   
 
 
     .card {
-      
-          -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      margin-bottom:30px;
-      width: 510px;
-      height: 210px;
-      border: 1px solid black;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            width: 360px;
+            margin: 10px;
+            height: 150px;
+            transform: scale(1); /* Initial scale */
+            transition: transform 0.3s; /* Transition for transform */
+        }
 
-    .card .card-block {
-      padding: 35px;
-    }
+        .card:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
 
-    .order-card i {
-      font-size: 50px;
-    }
+        
 
-    .f-left {
-      float: left;
-    }
+        .card-content {
+            padding: 2px;
+            color: white; /* White text for contrast */
+        }
 
-    .f-right {
-      float: right;
-    }
+        .card-title {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .card-text {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
     header {
     left: 0px;
     right: 0px;
@@ -96,46 +79,48 @@
    
 
     .row {
-      margin: 20px;
+      margin: 2px;
     }
   </style>
 </head>
 <br><br>
 <div class="container">
-
   <div class="row">
-      
     {% for course in courses %}
     {% if course.can_take_exam %}
-    <div class="col-md-4 col-xl-6">
+    <div class="col-md-4 card-margin">
       {% if course.already_taken %}
       <a href="{% url 'check-marks' course.id  %} "> 
-         
-            <div class="card bg-c-yellow order-card">
-              <div class="card-block"> 
-                <div style="border: #760ff4;">
-                <h1 class="m-b-20" style="text-decoration: none;color:rgb(8, 248, 4);">Already taken</h6>  
-                </div>        
-                <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
-                <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}
-                {{ course.s_time }}</h6>    
-              </div>
-            </div>
-          </a>
-        {% else %}                                              
-        
-      <a href="{% url 'take-exam' course.id  %}"> 
-      <div class="card bg-c-yellow order-card">
-        <div class="card-block">           
-          <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
-          <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}</h6>
-          <h3 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_time }}</h6>    
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block"> 
+            <div style="border: #760ff4;">
+              <h1 class="m-b-20" style="text-decoration: none;color:rgb(8, 248, 4);">Already taken</h6>  
+            </div>        
+            <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
+            <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}
+            {{ course.s_time }}</h6>    
+          </div>
         </div>
-      </div>
-    </a> {% endif %} 
+      </a>
+      {% else %}                                              
+      <a href="{% url 'take-exam' course.id  %}"> 
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block">           
+            <h1 class="m-b-20" style="text-decoration: none;color:rgb(6, 6, 6);">{{ course.course_name }}</h6>  
+            <h2 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_date }}</h6>
+            <h3 class="m-b-20" style="text-decoration: none;color:white;">{{ course.s_time }}</h6>    
+          </div>
+        </div>
+      </a> 
+      {% endif %} 
     </div>  
     {% endif %}  
+    {% if forloop.counter|divisibleby:3 %}
+      </div><div class="row">
+    {% endif %}
     {% endfor %}
+  </div>
+</div>
 <!--   
   <div class="panel panel-primary">
     <div class="panel-heading">

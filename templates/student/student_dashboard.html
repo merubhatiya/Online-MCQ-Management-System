@@ -24,53 +24,40 @@
         text-decoration: none;
       }
   
-      .order-card {
-        color: rgb(255, 255, 255);
-      }
-  
-      .bg-c-blue {
-        background: #04868f;
-      }
-  
-      .bg-c-green {
-        background:#4C51BF;
-      }
-  
-      .bg-c-yellow {
-        background: #cf4e0d;
-      }
-  
-      .bg-c-pink {
-        background: #760ff4;
-      }
-  
-  
+
       .card {
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            width: 450px;
+            margin: 10px;
+            height: 150px;
+            align-content: center;
+            transform: scale(1); /* Initial scale */
+            transition: transform 0.3s; /* Transition for transform */
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
         
-            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-        box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-        margin-bottom:30px;
-        width: 500px;
-        border: 1px solid black;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-      }
-  
-      .card .card-block {
-        padding: 45px;
-      }
-  
-      .order-card i {
-        font-size: 50px;
-      }
-  
-      .f-left {
-        float: left;
-      }
-  
-      .f-right {
-        float: right;
-      }
+
+        .card-content {
+            padding: 2px;
+            color: white; /* White text for contrast */
+        }
+
+        .card-title {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .card-text {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
       header {
       left: 0px;
       right: 0px;
@@ -78,31 +65,42 @@
     </style>
   </head>
 <br><br>
+<div class="container text-center">
+  <div class="row">
+    
 
-  <div class="container">
-    <div class="row">
-      
-  
-      <div class="col-md-4 col-xl-6"><a href="student-exam"> 
-        <div class="card bg-c-yellow order-card">
-          <div class="card-block">           
-            <h6 class="m-b-20" style="text-decoration: none;color:white;">View Available Exams</h6>      
-          </div>
+    <div class="col-md-4 col-xl-6"><a href="student-exam"> 
+      <div class="card bg-c-yellow order-card">
+        <div class="card-block">   <h1><br></h1>      
+          <h6 class="m-b-20" style="font-size: 30px; text-align: center; color: black;">View Available Exams</h6>
         </div>
-      </a>
-      </div>    
-      <div class="col-md-4 col-xl-6"><a href="student-marks">
-        <div class="card bg-c-pink order-card">
-          <div class="card-block">
-            <h6 class="m-b-20" style="text-decoration: none;color:white;">View previous Result</h6>            
-            </div>            
-          </div>
-       
-        </div>
-      </a>
       </div>
+    </a>
+    </div>    
+    <div class="col-md-4 col-xl-6"><a href="student-marks">
+      <div class="card bg-c-pink order-card">
+        <div class="card-block">
+          <h1><br></h1>
+          <h6 class="m-b-20 text-center" style="text-decoration: none;color: black; font-size: 30px;">View previous Result</h6>            
+          </div>            
+        </div>
+     
+      </div>
+    </a>
+
+    <div class="col-md-4 col-xl-6"><a href="/student/profile"> 
+      <div class="card bg-c-yellow order-card">
+        <div class="card-block">   <h1><br></h1>      
+          <h6 class="m-b-20" style="font-size: 30px; text-align: center; color: black;">My Profile</h6>
+        </div>
+      </div>
+    </a>
+    </div>   
+
     </div>
   </div>
+</div>
+
 
 
 <br><br><br><br><br><br><br><br><br><br>

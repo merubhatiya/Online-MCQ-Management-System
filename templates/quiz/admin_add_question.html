@@ -4,12 +4,12 @@
 
 <head>
     <script>
-
         document.addEventListener("contextmenu", function (e) {
-          e.preventDefault();
+            e.preventDefault();
         });
-        history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
-      </script>
+        history.pushState(null, null, window.location.href);
+        window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -26,29 +26,30 @@
         .container1 {
             max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
-            background-color: #f7f5f5;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .header h2 {
-            color: #2196f3;
+            color: #007bff;
+            font-size: 28px;
+            font-weight: bold;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-control {
-            height: 40px;
-            padding: 10px;
+            height: 45px;
+            padding: 12px;
             font-size: 16px;
         }
 
@@ -56,16 +57,16 @@
             padding: 10px 20px;
             font-size: 16px;
             border-radius: 5px;
-
         }
 
         .btn-primary {
-            background-color: #2196f3;
+            background-color: #007bff;
             border: none;
         }
 
         .btn-primary:hover {
-            background-color: #1976d2;
+            background-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 86, 179, 0.3);
         }
 
         a:link {
@@ -77,29 +78,32 @@
 <body>
     <div class="container1">
         <div class="header">
-            <h2>ADD QUESTION</h2>
+            <h2>Add Question</h2>
         </div>
         <form method="post" enctype="multipart/form-data" id="csv_form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="question">Exam</label>
-                {% render_field questionForm.courseID|attr:'required:true' class="form-control" %}
+                <label for="courseID">Exam</label>
+                {% render_field questionForm.courseID|attr:'required:true,placeholder:Select Exam' class="form-control" %}
             </div>
             <div class="form-group">
-                <input type="file" name="csv_file" accept=".csv" class="form-control">
+                <label for="csv_file">Upload CSV File</label>
+                <input type="file" name="csv_file" accept=".csv" class="form-control" placeholder="Choose your file">
             </div>
             <hr>
-
             <button type="submit" name="csv_submit" class="btn btn-primary">Upload CSV File</button>
             <button type="button" id="manual-btn" class="btn btn-primary">Add Question Manually</button>
         </form>
         <form method="post" id="manual_form" style="display: none;">
             {% csrf_token %}
-            {{ questionForm.as_p }}
+            <div class="form-group">
+                <label for="manual_question">Manual Question</label>
+                {{ questionForm.as_p }}
+            </div>
             <button type="submit" name="manual_submit" class="btn btn-primary">Add Question Manually</button>
             <button type="button" id="csv-btn" class="btn btn-primary">Upload CSV File</button>
         </form>
-        <!--  -->
+
         <script>
             $(document).ready(function () {
                 $('#manual-btn').click(function () {

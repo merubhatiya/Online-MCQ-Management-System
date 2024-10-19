@@ -186,8 +186,9 @@ h2 {
     <hr style="border-top: 1px solid #ccc; margin-top: 10px;">
     <div id="pagination-container">
         <div class="button-container" style="text-align: center;">
-            <button id="prev-button" class="btn btn-info" onclick="return showPrevQuestion()">Previous</button>
-            <button id="next-button" class="btn btn-info" onclick="return showNextQuestion()">Next</button>
+            <button id="prev-button" class="btn btn-info" onclick="return showPrevQuestion()" style="background: darkgreen; height: 40px ; width: 100px;">Previous</button>
+            <button id="next-button" class="btn btn-info" onclick="return showNextQuestion()"  style="background: darkgreen; height: 40px ; width: 100px;">Next</button>
+            
         </div>
         
         <div style="height: 125px; overflow-y: scroll;">
@@ -199,7 +200,7 @@ h2 {
 </form>
 
 <script>
-  window.onload = function() {
+  window.onload = function(intmfvc) {
   showQuestions();
   retrieveAnswersFromStorage();
 }
@@ -240,6 +241,9 @@ function retrieveAnswersFromStorage() {
           }
       }, 1000);
   }
+  document.getElementById('submit-button').addEventListener('click', function() {
+  localStorage.removeItem('answers'); // Add this line
+});
   startTimer('{{ course.d_time }}' * 60);
 
   var questions = document.getElementsByClassName('question');

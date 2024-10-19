@@ -1,17 +1,17 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse # type: ignore
 from . import forms,models
-from django.db.models import Sum
-from django.contrib.auth.models import Group
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required,user_passes_test
-from django.conf import settings
+from django.db.models import Sum # type: ignore
+from django.contrib.auth.models import Group # type: ignore
+from django.http import HttpResponseRedirect # type: ignore
+from django.contrib.auth.decorators import login_required,user_passes_test # type: ignore
+from django.conf import settings # type: ignore
 from datetime import date, timedelta
 from quiz import models as QMODEL
 from teacher import models as TMODEL
-from django.shortcuts import render, redirect
-from django.shortcuts import redirect
-from django.views.decorators.http import require_http_methods
-from django.contrib.auth import logout as logview
+from django.shortcuts import render, redirect # type: ignore
+from django.shortcuts import redirect # type: ignore
+from django.views.decorators.http import require_http_methods # type: ignore
+from django.contrib.auth import logout as logview # type: ignore
 #from .models import Course, Exam
 from datetime import datetime
 from student import models as SMODEL
@@ -112,7 +112,7 @@ def start_exam_view(request, pk):
         selected_answers = request.POST.getlist('selected_answers[]')
         # Do something with the selected answers
         calculate_marks_view(request, course, questions, selected_answers)
-        return HttpResponseRedirect('view-result')
+        return HttpResponseRedirect('student-marks')
     
     response= render(request,'student/start_exam.html',{'course':course,'questions':questions})
     response.set_cookie('course_id',course.id)
@@ -181,7 +181,7 @@ def calculate_marks_view(request):
         result.ctg = category_percentage
         result.save()
 
-    return HttpResponseRedirect('view-result')
+    return HttpResponseRedirect('student-marks')
     
 
 
@@ -216,7 +216,6 @@ def check_marks_view(request,pk):
     return render(request,'student/check_marks.html',{'results':results,'total_questions':total_mcq,'total_marks':total_marks})
 
 
-
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def logout_user(request):
@@ -224,7 +223,7 @@ def logout_user(request):
     return redirect('studentlogin')
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
-def profile(request):
+def profile(request):                                                                 
     student = models.Student.objects.get(user_id=request.user.id)
     userForm=forms.StudentUserForm(instance=request.user)
     studentForm=forms.StudentForm(instance=student)

@@ -49,6 +49,7 @@
     {%csrf_token%}
     <div class="form-group">
       <label for="course_name">Note For Exam</label>
+<<<<<<< HEAD
       {% render_field courseForm.exam_name class="form-control" placeholder="Java" %}
 
       <label for="exam_name">Exam Name</label>
@@ -65,6 +66,30 @@
 
       <label for="d_time">End Time (In Minute)</label>
       {% render_field courseForm.d_time class="form-control" placeholder="Enter The Minute" %}<br />
+=======
+      {% render_field courseForm.exam_name class="form-control"
+      placeholder="Java" %}
+
+      <label for="exam_name">Exam Name</label>
+      {% render_field courseForm.course_name class="form-control"
+      placeholder="Final" %}
+
+      <label for="secret_key">Secret Key</label>
+      {% render_field courseForm.secret_key class="form-control"
+      placeholder="exam" %}
+
+      <label for="s_date">Start Date</label>
+      {% render_field courseForm.s_date class="form-control" type="date"
+      placeholder="2025-12-16" %}
+
+      <label for="s_time">Strat Time</label>
+      {% render_field courseForm.s_time class="form-control" type="time"
+      placeholder="00:30" %}
+
+      <label for="d_time">End Time (In Minute)</label>
+      {% render_field courseForm.d_time class="form-control" placeholder="Enter
+      The Minute" %}<br />
+>>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
     </div>
     <button type="submit" class="btn btn-primary">UPDATE</button>
   </form>

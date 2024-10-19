@@ -53,6 +53,7 @@
   >
     {% csrf_token %}
     <label for="first_name">First Name</label>
+<<<<<<< HEAD
     {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
 
     <label for="last_name">Last Name</label>
@@ -68,6 +69,30 @@
     {% render_field userForm.password class="form-control" placeholder="Password" %} <br /><br />
     <label for="profile_pic">Profile Picture</label>
     {% render_field studentForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+=======
+    {% render_field userForm.first_name class="form-control" placeholder="First
+    Name" %}
+
+    <label for="last_name">Last Name</label>
+    {% render_field userForm.last_name class="form-control" placeholder="Last
+    Name" %}
+    <label for="mobile">Mobile</label>
+    {% render_field studentForm.mobile class="form-control" placeholder="Mobile"
+    %}
+    <label for="address">Address</label>
+    {% render_field studentForm.address class="form-control"
+    placeholder="Address" %}
+
+    <label for="username">Email</label>
+    {% render_field userForm.username class="form-control"
+    placeholder="Username" %}
+    <label for="password">Password</label>
+    {% render_field userForm.password class="form-control"
+    placeholder="Password" %} <br /><br />
+    <label for="profile_pic">Profile Picture</label>
+    {% render_field studentForm.profile_pic class="form-control"
+    placeholder="Profile Picture" %}
+>>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
     <br /><br />
     <input type="submit" value="Update" />
   </form>
@@ -144,7 +169,11 @@
   function validateAddress(address) {
     // You can add your own address format validation logic here
     return true;
+<<<<<<< HEAD
   } 
+=======
+  }
+>>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
 
   // Profile picture validation function
   function validateProfilePic(profilePic) {

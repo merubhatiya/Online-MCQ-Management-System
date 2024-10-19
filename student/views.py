@@ -112,7 +112,7 @@ def start_exam_view(request, pk):
         selected_answers = request.POST.getlist('selected_answers[]')
         # Do something with the selected answers
         calculate_marks_view(request, course, questions, selected_answers)
-        return HttpResponseRedirect('view-result')
+        return HttpResponseRedirect('student-marks')
     
     response= render(request,'student/start_exam.html',{'course':course,'questions':questions})
     response.set_cookie('course_id',course.id)
@@ -181,7 +181,7 @@ def calculate_marks_view(request):
         result.ctg = category_percentage
         result.save()
 
-    return HttpResponseRedirect('view-result')
+    return HttpResponseRedirect('student-marks')
     
 
 
@@ -215,7 +215,10 @@ def check_marks_view(request,pk):
     
     return render(request,'student/check_marks.html',{'results':results,'total_questions':total_mcq,'total_marks':total_marks})
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
 
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
@@ -224,7 +227,7 @@ def logout_user(request):
     return redirect('studentlogin')
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
-def profile(request):
+def profile(request):                                                                 
     student = models.Student.objects.get(user_id=request.user.id)
     userForm=forms.StudentUserForm(instance=request.user)
     studentForm=forms.StudentForm(instance=student)

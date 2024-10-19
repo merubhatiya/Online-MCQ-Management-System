@@ -61,14 +61,11 @@
             <label for="inputPassword4">Password</label>
             {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="password" %}
 =======
-            {% render_field userForm.username|attr:'required:true'
-            class="form-control" placeholder="Email" value="{{
-            request.user.username }}" %}
+            {% render_field userForm.username|attr:'required:true' class="form-control" placeholder="Email" value="{{request.user.username }}" %}
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Password</label>
-            {% render_field userForm.password|attr:'required:true'
-            class="form-control" placeholder="password" %}
+            {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="password" %}
 >>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
           </div>
         </div>
@@ -82,15 +79,11 @@
             <label for="last_name">Last Name</label>
             {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" value="{{request.user.last_name }}" %}
 =======
-            {% render_field userForm.first_name|attr:'required:true'
-            class="form-control" placeholder="First Name" value="{{
-            request.user.first_name }}" %}
+            {% render_field userForm.first_name|attr:'required:true' class="form-control" placeholder="First Name" value="{{request.user.first_name }}" %}
           </div>
           <div class="form-group col-md-6">
             <label for="last_name">Last Name</label>
-            {% render_field userForm.last_name|attr:'required:true'
-            class="form-control" placeholder="Last Name" value="{{
-            request.user.last_name }}" %}
+            {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" value="{{request.user.last_name }}" %}
 >>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
           </div>
         </div>
@@ -104,15 +97,11 @@
             <label for="address">Address</label>
             {% render_field studentForm.address|attr:'required:true' class="form-control" placeholder="Address" value="{{ student.address}}" %}
 =======
-            {% render_field studentForm.mobile|attr:'required:true'
-            class="form-control" placeholder="Mobile" value="{{ student.mobile
-            }}" %}
+            {% render_field studentForm.mobile|attr:'required:true' class="form-control" placeholder="Mobile" value="{{ student.mobile }}" %}
           </div>
           <div class="form-group col-md-6">
             <label for="address">Address</label>
-            {% render_field studentForm.address|attr:'required:true'
-            class="form-control" placeholder="Address" value="{{ student.address
-            }}" %}
+            {% render_field studentForm.address|attr:'required:true' class="form-control" placeholder="Address" value="{{ student.address }}" %}
 >>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
           </div>
         </div>
@@ -122,8 +111,7 @@
 <<<<<<< HEAD
             {% render_field studentForm.profile_pic class="form-control" placeholder="" %}
 =======
-            {% render_field studentForm.profile_pic class="form-control"
-            placeholder="" %}
+            {% render_field studentForm.profile_pic class="form-control" placeholder="" %}
 >>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
           </div>
         </div>

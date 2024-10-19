@@ -3,24 +3,25 @@
 <html lang="en" dir="ltr">
   <head>
     <script>
-
       document.addEventListener("contextmenu", function (e) {
         e.preventDefault();
       });
-      history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+      history.pushState(null, null, window.location.href);
+      window.onpopstate = function () {
+        history.pushState(null, null, window.location.href);
+      };
     </script>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
   </head>
   <body>
     {% include "quiz/navbar.html" %}
-    <br><br><br><br><br>
-<img src="{% static "image/logout_img.png" %}"  style="width:800px; height:100px; padding-left:400px;">
+    <br /><br /><br /><br /><br />
+    <img src="{% static "image/logout_img.png" %}" style="width:800px;
+    height:100px; padding-left:400px;">
 
-<br><br><br><br><br>
-<br><br><br><br><br>
-<br><br>
-{% include "quiz/footer.html" %}
-
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br />
   </body>
 </html>

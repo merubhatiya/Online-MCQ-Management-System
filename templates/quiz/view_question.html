@@ -1,34 +1,84 @@
-{% extends 'quiz/adminbase.html' %}
-{% block content %}
-{%load static%}
+{% extends 'quiz/adminbase.html' %} {% block content %} {% load static %}
 
 <head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <link
+    href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  />
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-  <style media="screen">
-    a:link {
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    a:link,
+    a:visited {
       text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover,
+    a:focus {
+      color: #0056b3;
+      text-decoration: underline;
     }
 
     h6 {
       text-align: center;
+      font-weight: bold;
+    }
+
+    .panel {
+      margin: 50px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .table th,
+    .table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .btn {
+      border-radius: 20px;
+      padding: 10px 15px; /* Adjust padding for larger buttons */
+    }
+
+    .btn .glyphicon {
+      font-size: 1.5em; /* Increase icon size */
     }
 
     .row {
-      margin: 100px;
+      margin: 50px;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
     }
   </style>
-  <script>
 
+  <script>
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
-    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+    history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+      history.pushState(null, null, window.location.href);
+    };
   </script>
 </head>
-<br><br>
+
+<br /><br />
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -36,37 +86,56 @@
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
+        <tr>
+          <th>#</th>
+          <!-- Added Index Column -->
           <th>Question</th>
-          <th>Option1</th>
-          <th>Option2</th>
-          <th>Option3</th>
-          <th>Option4</th>
-          <th>answer</th>
-          <th>Catagory</th>
+          <th>Option 1</th>
+          <th>Option 2</th>
+          <th>Option 3</th>
+          <th>Option 4</th>
+          <th>Answer</th>
+          <th>Category</th>
           <th>Marks</th>
-          <th>Update Question</th>
-          <th>Delete Question</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
-      {% for c in questions %}
-      <tr>
-
-        <td> {{c.question}}</td>
-        <td> {{c.option1}}</td>
-        <td> {{c.option2}}</td>
-        <td> {{c.option3}}</td>
-        <td> {{c.option4}}</td>
-        <td> {{c.answer}}</td>
-        <td> {{c.ctg}}</td>
-        <td>{{c.marks}}</td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'update-question' c.id  %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'delete-question' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-        
-      </tr>
-      {% endfor %}
+      <tbody>
+        {% for c in questions %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <!-- Index using forloop.counter -->
+          <td>{{ c.question }}</td>
+          <td>{{ c.option1 }}</td>
+          <td>{{ c.option2 }}</td>
+          <td>{{ c.option3 }}</td>
+          <td>{{ c.option4 }}</td>
+          <td>{{ c.answer }}</td>
+          <td>{{ c.ctg }}</td>
+          <td>{{ c.marks }}</td>
+          <td>
+            <a
+              class="btn btn-primary btn-xs"
+              href="{% url 'update-question' c.id %}"
+            >
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+          <td>
+            <a
+              class="btn btn-danger btn-xs"
+              href="{% url 'delete-question' c.id %}"
+            >
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
 </div>
 
-<br><br><br><br><br><br>
+<br /><br /><br /><br /><br /><br />
 {% endblock content %}

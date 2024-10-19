@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en" dir="ltr">
+  <head>
+    <script>
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+      history.pushState(null, null, window.location.href);
+      window.onpopstate = function () {
+        history.pushState(null, null, window.location.href);
+      };
+    </script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-  <script>
+    <style media="screen">
+      .jumbotron {
+        margin-bottom: 0px;
+      }
 
-    document.addEventListener("contextmenu", function (e) {
-      e.preventDefault();
-    });
-    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      .jumbotron h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
 
-
-  <style media="screen">
-    .jumbotron {
-      margin-bottom: 0px;
-    }
-
-    .jumbotron h1 {
-      text-align: center;
-    }
-  </style>
-
-</head>
-
-<body>
-
-  {% include "quiz/navbar.html" %}
-  <br><br>
-  <div class="jumbotron">
-    <h1 class="display-4">Your message sent successfully !</h1>
-    <p class="lead">We will respond to your feedback soon</p>
-    <hr class="my-4">
-    <p>Check other features of website !</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
-    </p>
-  </div>
-
-  {% include "quiz/footer.html" %}
-</body>
-
+  <body>
+    {% include "quiz/navbar.html" %}
+    <br /><br />
+    <div class="jumbotron">
+      <h1 class="display-4">Your message sent successfully !</h1>
+      <p class="lead">We will respond to your feedback soon</p>
+      <hr class="my-4" />
+      <p>Check other features of website !</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
+      </p>
+    </div>
+  </body>
 </html>

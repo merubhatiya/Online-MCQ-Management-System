@@ -1,17 +1,17 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse # type: ignore
 from . import forms,models
-from django.db.models import Sum
-from django.contrib.auth.models import Group
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required,user_passes_test
-from django.conf import settings
+from django.db.models import Sum # type: ignore
+from django.contrib.auth.models import Group # type: ignore
+from django.http import HttpResponseRedirect # type: ignore
+from django.contrib.auth.decorators import login_required,user_passes_test # type: ignore
+from django.conf import settings # type: ignore
 from datetime import date, timedelta
 from quiz import models as QMODEL
 from teacher import models as TMODEL
-from django.shortcuts import render, redirect
-from django.shortcuts import redirect
-from django.views.decorators.http import require_http_methods
-from django.contrib.auth import logout as logview
+from django.shortcuts import render, redirect # type: ignore
+from django.shortcuts import redirect # type: ignore
+from django.views.decorators.http import require_http_methods # type: ignore
+from django.contrib.auth import logout as logview # type: ignore
 #from .models import Course, Exam
 from datetime import datetime
 from student import models as SMODEL
@@ -57,6 +57,19 @@ def student_dashboard_view(request):
     }
     return render(request,'student/student_dashboard.html',context=dict)
 
+
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def student_marks_view(request):
+    student = models.Student.objects.get(user_id=request.user.id)
+    taken_exams = QMODEL.Result.objects.filter(student=student)
+    taken_courses = [exam.exam for exam in taken_exams]
+    courses = QMODEL.Course.objects.all()
+    available_courses = [course for course in courses if course in taken_courses]
+    
+    
+    return render(request,'student/student_marks.html',{'courses':available_courses})
+
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def student_exam_view(request):
@@ -72,7 +85,7 @@ def student_exam_view(request):
         course_date = course.s_date
         course_time = course.s_time
         if course_date == today.date() and course_time <= today.time():
-            course.can_take_exam = True
+            course.can_take_exam =  True
         else:
             course.can_take_exam = False
     return render(request,'student/student_exam.html',{'courses':courses, 'today': today, 'current_time': current_time})
@@ -176,7 +189,10 @@ def calculate_marks_view(request):
 @user_passes_test(is_student)
 def view_result_view(request):
     student = models.Student.objects.get(user_id=request.user.id)
+    taken_exams = QMODEL.Result.objects.filter(student=student)
+    taken_courses = [exam.exam for exam in taken_exams]
     courses = QMODEL.Course.objects.all()
+    available_courses = [course for course in courses if course in taken_courses]
     
     return render(request,'student/view_result.html',{'courses':courses})
     
@@ -199,12 +215,7 @@ def check_marks_view(request,pk):
     
     return render(request,'student/check_marks.html',{'results':results,'total_questions':total_mcq,'total_marks':total_marks})
 
-@login_required(login_url='studentlogin')
-@user_passes_test(is_student)
-def student_marks_view(request):
-    student = models.Student.objects.get(user_id=request.user.id)
-    courses = QMODEL.Course.objects.all()
-    return render(request,'student/student_marks.html',{'courses':courses})
+
 
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)

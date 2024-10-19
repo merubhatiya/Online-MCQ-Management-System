@@ -215,10 +215,6 @@ def check_marks_view(request,pk):
     
     return render(request,'student/check_marks.html',{'results':results,'total_questions':total_mcq,'total_marks':total_marks})
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d71f75d1242079b61e488d05cdca8ec50fb14038
 
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)

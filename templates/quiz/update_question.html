@@ -1,114 +1,122 @@
-{% extends 'quiz/adminbase.html' %}
-{% load widget_tweaks %}
-
-{% block content %}
+{% extends 'quiz/adminbase.html' %} {% load widget_tweaks %} {% block content %}
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #e9ecef;
-            color: #333;
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #e9ecef;
+      color: #333;
+    }
 
-        .container1 {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
+    .container1 {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
 
-        .container1:hover {
-            transform: translateY(-5px);
-        }
+    .container1:hover {
+      transform: translateY(-5px);
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .header h2 {
-            color: #007bff;
-            font-size: 28px;
-            font-weight: bold;
-        }
+    .header h2 {
+      color: #007bff;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+    .form-group {
+      margin-bottom: 25px;
+    }
 
-        .form-control {
-            height: 45px;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            transition: border-color 0.2s;
-        }
+    .form-control {
+      height: 45px;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      transition: border-color 0.2s;
+    }
 
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
 
-        .btn {
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
+    .btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
 
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            box-shadow: 0 0 10px rgba(0, 86, 179, 0.3);
-        }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      box-shadow: 0 0 10px rgba(0, 86, 179, 0.3);
+    }
 
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
 
-        a:link {
-            text-decoration: none;
-        }
-    </style>
-    <script>
-        document.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-        });
-        history.pushState(null, null, window.location.href);
-        window.onpopstate = function () { history.pushState(null, null, window.location.href); };
-    </script>
+    a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+      history.pushState(null, null, window.location.href);
+    };
+  </script>
 </head>
 <body>
-    <div class="container1">
-        <div class="header">
-            <h2>Update Question</h2>
-        </div>
-        <form method="post">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {{ field|add_class:"form-control" }}  <!-- Add Bootstrap class to form fields -->
-                    {% if field.errors %}
-                        <div class="error-message">{{ field.errors }}</div>  <!-- Display errors -->
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">Update Question</button>
-        </form>
+  <div class="container1">
+    <div class="header">
+      <h2>Update Question</h2>
     </div>
+    <form method="post">
+      {% csrf_token %} {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }} {{ field|add_class:"form-control" }}
+        <!-- Add Bootstrap class to form fields -->
+        {% if field.errors %}
+        <div class="error-message">{{ field.errors }}</div>
+        <!-- Display errors -->
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Update Question</button>
+    </form>
+  </div>
 </body>
 {% endblock content %}

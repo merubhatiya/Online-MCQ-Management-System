@@ -1,6 +1,4 @@
-{% extends 'quiz/adminbase.html' %}
-{% block content %}
-{% load static %}
+{% extends 'quiz/adminbase.html' %} {% block content %} {% load static %}
 
 <head>
   <script>
@@ -8,16 +6,21 @@
       e.preventDefault();
     });
     history.pushState(null, null, window.location.href);
-    window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
+    window.onpopstate = function () {
+      history.pushState(null, null, window.location.href);
+    };
   </script>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
   <script src="//code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <style>
     body {
       background-color: #f7f9fc;
-      font-family: 'Arial', sans-serif;
+      font-family: "Arial", sans-serif;
     }
     h6 {
       text-align: center;
@@ -71,7 +74,10 @@
           <tr>
             <td>{{ c.course_name }}</td>
             <td>
-              <a class="btn btn-primary btn-xs" href="{% url 'view-question' c.id %}">
+              <a
+                class="btn btn-primary btn-xs"
+                href="{% url 'view-question' c.id %}"
+              >
                 <span class="glyphicon glyphicon-eye-open"></span> View
               </a>
             </td>

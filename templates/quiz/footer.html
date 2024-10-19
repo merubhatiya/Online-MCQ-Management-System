@@ -1,67 +1,64 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script>
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+      history.pushState(null, null, window.location.href);
+      window.onpopstate = function () {
+        history.pushState(null, null, window.location.href);
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<head>
-
-  <script>
-
-    document.addEventListener("contextmenu", function (e) {
-      e.preventDefault();
-    });
-    history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
-  </script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-  <style>
-    /*---------------------------------------
+    <style>
+      /*---------------------------------------
    Social section
 -----------------------------------------*/
-    footer {
-      padding: 0px 0px 0px 0px;
-      background-color: #1b1b1b;
-      margin: 0px;
-      width: 100%;
-      height: 70px;
-      
-    }
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: #1b1b1b;
+        margin: 0px;
+        width: 100%;
+        height: 70px;
+      }
 
-    .fa {
-      padding: 20px;
-      font-size: 23px;
-      width: 60px;
-      text-align: center;
-      text-decoration: none;
-      margin: 5px 2px;
-      border-radius: 50%;
-    }
+      .fa {
+        padding: 20px;
+        font-size: 23px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
 
-    .fa:hover {
-      opacity: 0.5;
-      text-decoration: none;
-    }
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
 
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
 
-
-    p {
-      text-align: center;
-
-    }
-  </style>
-</head>
-
-<footer>
-
-  <br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-         <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-          <p>@Online Quiz 2024 </p><br>
-        </div> 
+  <footer>
+    <br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div style="color: #ffffff" class="wow fadeInUp footer-copyright">
+            <p>@Online Quiz 2024</p>
+            <br />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-
+  </footer>
 </html>

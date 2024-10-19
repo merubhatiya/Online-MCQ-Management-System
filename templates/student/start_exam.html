@@ -1,28 +1,25 @@
-{% extends 'student/studentbase.html' %}
-{% block content %}
-{%load static%}
+{% extends 'student/studentbase.html' %} {% block content %} {%load static%}
 
 <head>
-  <script type = "text/javascript">
+  <script type="text/javascript">
     history.pushState(null, null, location.href);
     history.back();
     history.forward();
-    window.onpopstate = function ()
-    {
-        history.go(1);
+    window.onpopstate = function () {
+      history.go(1);
     };
-</script>
-  <script>
-
-      // Prevent the context menu from appearing
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
-
-
-
   </script>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script>
+    // Prevent the context menu from appearing
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+  </script>
+  <link
+    href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  />
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <style>
@@ -39,26 +36,26 @@ document.addEventListener("contextmenu", function (e) {
     }
 
     .question {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-.question-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
+    .question-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-.question-info h3 {
-  margin-right: 10px;
-}
+    .question-info h3 {
+      margin-right: 10px;
+    }
 
-.question-info h4 {
-  margin-left: auto;
-}
+    .question-info h4 {
+      margin-left: auto;
+    }
     .question-nav-item.active {
       color: #ffffff;
       background-color: #1581e0;
@@ -85,37 +82,36 @@ document.addEventListener("contextmenu", function (e) {
     }
 
     .jumbotron.my-4 {
-  background-color: #ffffff;
-  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%; /* adjust the width to match the height */
-  height: 85%; /* set a maximum height to prevent overflow */
-  overflow-y: auto; /* add a scrollbar when content exceeds the height */
-  padding: 20px; /* reduce padding to make more space available for content */
-  font-size: 1.2em; /* reduce font size to make more content fit in the available space */
-  margin: 0 auto;
-}
-h2 {
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-}
+      background-color: #ffffff;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%; /* adjust the width to match the height */
+      height: 85%; /* set a maximum height to prevent overflow */
+      overflow-y: auto; /* add a scrollbar when content exceeds the height */
+      padding: 20px; /* reduce padding to make more space available for content */
+      font-size: 1.2em; /* reduce font size to make more content fit in the available space */
+      margin: 0 auto;
+    }
+    h2 {
+      margin: 0 auto;
+      display: block;
+      text-align: center;
+    }
     .btn.btn-success {
       display: flex;
       justify-content: center;
       align-items: end;
     }
 
-    
     .question-container {
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
     .timer-container {
       display: flex;
       justify-content: space-between;
@@ -132,221 +128,296 @@ h2 {
       overflow: hidden;
     }
   </style>
-
 </head>
 
-
-<div class="jumbotron my-4" style="width: 90%;">
-  <form method="POST"  action="/student/calculate-marks"  >
+<div class="jumbotron my-4" style="width: 90%">
+  <form method="POST" action="/student/calculate-marks">
     {% csrf_token %}
-   <br>
+    <br />
     <!-- Exam Header and Timer -->
-    <hr style="border-top: 1px solid #ccc; margin-top: 1px;">
-    <div >
-        <h2 style="font-size: larger; "><b style="color: rgb(13, 13, 13); font-size: 25px;">Exam Name :<b style="color: blue;"> {{ course.course_name }}</b></b></h2><br>
-        <div class="timer-container">
-            <h2 id="timer" style="color: #ff0000;"></h2>
-            <button id="submit-button" class="btn btn-success" type="submit">End Exam</button>
-        </div>
+    <hr style="border-top: 1px solid #ccc; margin-top: 1px" />
+    <div>
+      <h2 style="font-size: larger">
+        <b style="color: rgb(13, 13, 13); font-size: 25px"
+          >Exam Name :<b style="color: blue"> {{ course.course_name }}</b></b
+        >
+      </h2>
+      <br />
+      <div class="timer-container">
+        <h2 id="timer" style="color: #ff0000"></h2>
+        <button id="submit-button" class="btn btn-success" type="submit">
+          End Exam
+        </button>
+      </div>
     </div>
-    <hr style="border-top: 1px solid #ccc; margin-top: 10px;">
- 
+    <hr style="border-top: 1px solid #ccc; margin-top: 10px" />
+
     <!-- Questions Loop -->
     {% for q in questions %}
-    <div class="question-container"></div>  
+    <div class="question-container"></div>
     <div class="question">
-        <div class="question-info">
-            <h3 class="text-info" style="color: blue; font-size: 30px;">{{ forloop.counter }}. {{q.question}}</h3>
-            <h4 style="text-align: right;">[Marks {{q.marks}}]</h4>
-        </div>
-        
-        <div class="form-check mx-4" style="font-size: 25px;">
-            <input class="form-check-input" type="radio" style="width: 19px; height: 19px;" name="answers_{{ forloop.counter }}" id="{{q.option1}}" value="{{ q.option1 }}">
-            <label class="form-check-label" for="{{ q.option1 }}">{{ q.option1 }}</label>
-        </div>
-        
-        <div class="form-check mx-4" style="font-size: 25px;">
-            <input class="form-check-input" type="radio" style="width: 19px; height: 19px; color: green;" name="answers_{{ forloop.counter }}" id="{{q.option2}}" value="{{ q.option2 }}">
-            <label class="form-check-label" for="{{ q.option2 }}">{{ q.option2 }}</label>
-        </div>
-        
-        <div class="form-check mx-4" style="font-size: 25px;">
-            <input class="form-check-input" type="radio" style="width: 19px; height: 19px;" name="answers_{{ forloop.counter }}" id="{{q.option3}}" value="{{ q.option3 }}">
-            <label class="form-check-label" for="{{ q.option3 }}">{{ q.option3 }}</label>
-        </div>
-        
-        <div class="form-check mx-4" style="font-size: 25px;">
-            <input class="form-check-input" type="radio" style="width: 19px; height: 19px;" name="answers_{{ forloop.counter }}" id="{{q.option4}}" value="{{ q.option4 }}">
-            <label class="form-check-label" for="{{ q.option4 }}">{{ q.option4 }}</label>
-        </div>
+      <div class="question-info">
+        <h3 class="text-info" style="color: blue; font-size: 30px">
+          {{ forloop.counter }}. {{q.question}}
+        </h3>
+        <h4 style="text-align: right">[Marks {{q.marks}}]</h4>
+      </div>
+
+      <div class="form-check mx-4" style="font-size: 25px">
+        <input
+          class="form-check-input"
+          type="radio"
+          style="width: 19px; height: 19px"
+          name="answers_{{ forloop.counter }}"
+          id="{{q.option1}}"
+          value="{{ q.option1 }}"
+        />
+        <label class="form-check-label" for="{{ q.option1 }}"
+          >{{ q.option1 }}</label
+        >
+      </div>
+
+      <div class="form-check mx-4" style="font-size: 25px">
+        <input
+          class="form-check-input"
+          type="radio"
+          style="width: 19px; height: 19px; color: green"
+          name="answers_{{ forloop.counter }}"
+          id="{{q.option2}}"
+          value="{{ q.option2 }}"
+        />
+        <label class="form-check-label" for="{{ q.option2 }}"
+          >{{ q.option2 }}</label
+        >
+      </div>
+
+      <div class="form-check mx-4" style="font-size: 25px">
+        <input
+          class="form-check-input"
+          type="radio"
+          style="width: 19px; height: 19px"
+          name="answers_{{ forloop.counter }}"
+          id="{{q.option3}}"
+          value="{{ q.option3 }}"
+        />
+        <label class="form-check-label" for="{{ q.option3 }}"
+          >{{ q.option3 }}</label
+        >
+      </div>
+
+      <div class="form-check mx-4" style="font-size: 25px">
+        <input
+          class="form-check-input"
+          type="radio"
+          style="width: 19px; height: 19px"
+          name="answers_{{ forloop.counter }}"
+          id="{{q.option4}}"
+          value="{{ q.option4 }}"
+        />
+        <label class="form-check-label" for="{{ q.option4 }}"
+          >{{ q.option4 }}</label
+        >
+      </div>
     </div>
     {% endfor %}
-    <br>
+    <br />
     <!-- Question Navigation -->
-    <hr style="border-top: 1px solid #ccc; margin-top: 10px;">
+    <hr style="border-top: 1px solid #ccc; margin-top: 10px" />
     <div id="pagination-container">
-        <div class="button-container" style="text-align: center;">
-            <button id="prev-button" class="btn btn-info" onclick="return showPrevQuestion()" style="background: darkgreen; height: 40px ; width: 100px;">Previous</button>
-            <button id="next-button" class="btn btn-info" onclick="return showNextQuestion()"  style="background: darkgreen; height: 40px ; width: 100px;">Next</button>
-            
-        </div>
-        
-        <div style="height: 125px; overflow-y: scroll;">
-            {% for q in questions %}
-            <button class="btn btn-info question-nav-item" type="button" id="question-{{ forloop.counter }}">{{ forloop.counter }}</button>
-            {% endfor %}
-        </div>
+      <div class="button-container" style="text-align: center">
+        <button
+          id="prev-button"
+          class="btn btn-info"
+          onclick="return showPrevQuestion()"
+          style="background: darkgreen; height: 40px; width: 100px"
+        >
+          Previous
+        </button>
+        <button
+          id="next-button"
+          class="btn btn-info"
+          onclick="return showNextQuestion()"
+          style="background: darkgreen; height: 40px; width: 100px"
+        >
+          Next
+        </button>
+      </div>
+
+      <div style="height: 125px; overflow-y: scroll">
+        {% for q in questions %}
+        <button
+          class="btn btn-info question-nav-item"
+          type="button"
+          id="question-{{ forloop.counter }}"
+        >
+          {{ forloop.counter }}
+        </button>
+        {% endfor %}
+      </div>
     </div>
-</form>
+  </form>
 
-<script>
-  window.onload = function(intmfvc) {
-  showQuestions();
-  retrieveAnswersFromStorage();
-}
+  <script>
+    window.onload = function (intmfvc) {
+      showQuestions();
+      retrieveAnswersFromStorage();
+    };
 
-function retrieveAnswersFromStorage() {
-  var savedAnswers = localStorage.getItem('answers');
-  if (savedAnswers) {
-    answers = JSON.parse(savedAnswers);
-    for (var i = 0; i < answers.length; i++) {
-      var questionNavItem = document.getElementById('question-' + (i + 1));
-      if (answers[i]) {
-        questionNavItem.style.background = '#63a74f';
-        questionNavItem.style.color = '#ffffff';
+    function retrieveAnswersFromStorage() {
+      var savedAnswers = localStorage.getItem("answers");
+      if (savedAnswers) {
+        answers = JSON.parse(savedAnswers);
+        for (var i = 0; i < answers.length; i++) {
+          var questionNavItem = document.getElementById("question-" + (i + 1));
+          if (answers[i]) {
+            questionNavItem.style.background = "#63a74f";
+            questionNavItem.style.color = "#ffffff";
+          }
+        }
       }
     }
-  }
-}
-  function startTimer(time) {
+    function startTimer(time) {
       let timerInterval;
       let hours = Math.floor(time / 3600);
       let minutes = Math.floor((time % 3600) / 60);
       let seconds = time % 60;
       timerInterval = setInterval(function () {
-          seconds--;
-          if (seconds < 0) {
-              minutes--;
-              seconds = 59;
-          }
-          if (minutes < 0) {
-              hours--;
-              minutes = 59;
-          }
-          document.getElementById('timer').innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-          if (hours <= 0 && minutes <= 0 && seconds <= 0) {
-              clearInterval(timerInterval);
-              alert('Time\'s up! Exam End Automatically');
-              document.getElementById('submit-button').click();               
-          }
-      }, 1000);
-  }
-  document.getElementById('submit-button').addEventListener('click', function() {
-  localStorage.removeItem('answers'); // Add this line
-});
-  startTimer('{{ course.d_time }}' * 60);
-
-  var questions = document.getElementsByClassName('question');
-  var currentPage = 0;
-  var questionsPerPage = 1;
-  var questionNavItems = document.getElementsByClassName('question-nav-item');
-  var currentQuestion = questions[currentPage * questionsPerPage];
-  var answers = [];
-
-
-
-  function showQuestions() {
-      for (var i = 0; i < questions.length; i++) {
-          if (i >= currentPage * questionsPerPage && i < (currentPage + 1) * questionsPerPage) {
-              questions[i].style.display = 'block';
-              var radioButtons = questions[i].querySelectorAll('input[type="radio"]');
-
-              for (var j = 0; j < radioButtons.length; j++) {
-                  radioButtons[j].addEventListener('change', function () {
-                      if (this.checked) {
-                          var questionNumber = this.name.replace('answers_', '');
-                          var questionNavItem = document.getElementById('question-' + questionNumber);
-                          questionNavItem.style.background = '#008000';
-                          questionNavItem.style.color = '#ffffff';
-
-                          answers[questionNumber - 1] = this.value;
-                          localStorage.setItem('answers', JSON.stringify(answers));
-                      }
-                  });
-              }
-              var savedAnswers = localStorage.getItem('answers');
-      if (savedAnswers) {
-        answers = JSON.parse(savedAnswers);
-        for (var j = 0; j < radioButtons.length; j++) {
-          if (radioButtons[j].value === answers[i]) {
-            radioButtons[j].checked = true;
-            var questionNumber = radioButtons[j].name.replace('answers_', '');
-            var questionNavItem = document.getElementById('question-' + questionNumber);
-            questionNavItem.style.background = '#008000';
-            questionNavItem.style.color = '#ffffff';
-          }
+        seconds--;
+        if (seconds < 0) {
+          minutes--;
+          seconds = 59;
         }
-      }
+        if (minutes < 0) {
+          hours--;
+          minutes = 59;
+        }
+        document.getElementById("timer").innerHTML = `${hours
+          .toString()
+          .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+        if (hours <= 0 && minutes <= 0 && seconds <= 0) {
+          clearInterval(timerInterval);
+          alert("Time's up! Exam End Automatically");
+          document.getElementById("submit-button").click();
+        }
+      }, 1000);
     }
-           else {
-              questions[i].style.display = 'none';
+    document
+      .getElementById("submit-button")
+      .addEventListener("click", function () {
+        localStorage.removeItem("answers"); // Add this line
+      });
+    startTimer("{{ course.d_time }}" * 60);
+
+    var questions = document.getElementsByClassName("question");
+    var currentPage = 0;
+    var questionsPerPage = 1;
+    var questionNavItems = document.getElementsByClassName("question-nav-item");
+    var currentQuestion = questions[currentPage * questionsPerPage];
+    var answers = [];
+
+    function showQuestions() {
+      for (var i = 0; i < questions.length; i++) {
+        if (
+          i >= currentPage * questionsPerPage &&
+          i < (currentPage + 1) * questionsPerPage
+        ) {
+          questions[i].style.display = "block";
+          var radioButtons = questions[i].querySelectorAll(
+            'input[type="radio"]'
+          );
+
+          for (var j = 0; j < radioButtons.length; j++) {
+            radioButtons[j].addEventListener("change", function () {
+              if (this.checked) {
+                var questionNumber = this.name.replace("answers_", "");
+                var questionNavItem = document.getElementById(
+                  "question-" + questionNumber
+                );
+                questionNavItem.style.background = "#008000";
+                questionNavItem.style.color = "#ffffff";
+
+                answers[questionNumber - 1] = this.value;
+                localStorage.setItem("answers", JSON.stringify(answers));
+              }
+            });
           }
+          var savedAnswers = localStorage.getItem("answers");
+          if (savedAnswers) {
+            answers = JSON.parse(savedAnswers);
+            for (var j = 0; j < radioButtons.length; j++) {
+              if (radioButtons[j].value === answers[i]) {
+                radioButtons[j].checked = true;
+                var questionNumber = radioButtons[j].name.replace(
+                  "answers_",
+                  ""
+                );
+                var questionNavItem = document.getElementById(
+                  "question-" + questionNumber
+                );
+                questionNavItem.style.background = "#008000";
+                questionNavItem.style.color = "#ffffff";
+              }
+            }
+          }
+        } else {
+          questions[i].style.display = "none";
+        }
       }
 
       for (var i = 0; i < questionNavItems.length; i++) {
-          if (i == currentPage) {
-              questionNavItems[i].classList.add('active');
-          } else {
-              questionNavItems[i].classList.remove('active');
-          }
+        if (i == currentPage) {
+          questionNavItems[i].classList.add("active");
+        } else {
+          questionNavItems[i].classList.remove("active");
+        }
       }
 
       if (currentPage == 0) {
-          document.getElementById('prev-button').disabled = true;
+        document.getElementById("prev-button").disabled = true;
       } else {
-          document.getElementById('prev-button').disabled = false;
+        document.getElementById("prev-button").disabled = false;
       }
 
       if (currentPage == questions.length / questionsPerPage - 1) {
-          document.getElementById('next-button').disabled = true;
+        document.getElementById("next-button").disabled = true;
       } else {
-          document.getElementById('next-button').disabled = false;
+        document.getElementById("next-button").disabled = false;
       }
-  }
+    }
 
-  var savedAnswers = localStorage.getItem('answers');
-if (savedAnswers) {
-  answers = JSON.parse(savedAnswers);
+    var savedAnswers = localStorage.getItem("answers");
+    if (savedAnswers) {
+      answers = JSON.parse(savedAnswers);
 
-  window.addEventListener('beforeunload', function(event) {
-  // Submit the exam form automatically when the user leaves the page
-  document.getElementById('submit-button').click();
-  // Clear local storage
-  localStorage.removeItem('answers');
-});
-}
-  function showNextQuestion() {
+      window.addEventListener("beforeunload", function (event) {
+        // Submit the exam form automatically when the user leaves the page
+        document.getElementById("submit-button").click();
+        // Clear local storage
+        localStorage.removeItem("answers");
+      });
+    }
+    function showNextQuestion() {
       currentPage++;
       showQuestions();
       return false; // prevent default form submission
-  }
+    }
 
-  function showPrevQuestion() {
+    function showPrevQuestion() {
       currentPage--;
       showQuestions();
       return false; // prevent default form submission
-  }
-  
-  for (var i = 0; i < questionNavItems.length; i++) {
-      questionNavItems[i].addEventListener('click', function () {
-          var questionNumber = parseInt(this.id.replace('question-', ''));
-          currentPage = questionNumber - 1;
-          showQuestions();
+    }
+
+    for (var i = 0; i < questionNavItems.length; i++) {
+      questionNavItems[i].addEventListener("click", function () {
+        var questionNumber = parseInt(this.id.replace("question-", ""));
+        currentPage = questionNumber - 1;
+        showQuestions();
       });
+    }
+  </script>
 
-
-  }
-  
-</script>
-
-{% endblock content %}
+  {% endblock content %}
+</div>

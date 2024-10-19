@@ -1,111 +1,127 @@
-{% extends 'quiz/adminbase.html' %}
-{% load widget_tweaks %}
-{% block content %}
+{% extends 'quiz/adminbase.html' %} {% load widget_tweaks %} {% block content %}
 <head>
   <style media="screen">
-    input[type=text], select,input[type=number] ,input[type=password], textarea{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+    input[type="text"],
+    select,
+    input[type="number"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
 
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    input[type="submit"] {
+      width: 100%;
+      background-color: #4caf50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-
-
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
   </style>
 
-<script>
-
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  });
-  history.pushState(null, null, window.location.href); window.onpopstate = function () { history.pushState(null, null, window.location.href); };  
-</script>
+  <script>
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+      history.pushState(null, null, window.location.href);
+    };
+  </script>
 </head>
 
-<br><br>
-<h3 style="text-align:center;">UPDATE STUDENT</h3>
+<br /><br />
+<h3 style="text-align: center">UPDATE STUDENT</h3>
 <div>
-  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
-      {% csrf_token %}
-        <label for="first_name">First Name</label>
-        {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+  <form
+    method="post"
+    autocomplete="off"
+    enctype="multipart/form-data"
+    style="margin-left: 200px; margin-right: 200px"
+  >
+    {% csrf_token %}
+    <label for="first_name">First Name</label>
+    {% render_field userForm.first_name class="form-control" placeholder="First
+    Name" %}
 
-        <label for="last_name">Last Name</label>
-        {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-          <label for="mobile">Mobile</label>
-          {% render_field studentForm.mobile class="form-control" placeholder="Mobile" %}
-            <label for="address">Address</label>
-          {% render_field studentForm.address class="form-control" placeholder="Address" %}
-          
-        <label for="username">Email</label>
-        {% render_field userForm.username class="form-control" placeholder="Username" %}
-          <label for="password">Password</label>
-        {% render_field userForm.password class="form-control" placeholder="Password" %} <br><br>
-        <label for="profile_pic">Profile Picture</label>
-          {% render_field studentForm.profile_pic class="form-control" placeholder="Profile Picture" %}
-<br><br>
-    <input type="submit" value="Update">
+    <label for="last_name">Last Name</label>
+    {% render_field userForm.last_name class="form-control" placeholder="Last
+    Name" %}
+    <label for="mobile">Mobile</label>
+    {% render_field studentForm.mobile class="form-control" placeholder="Mobile"
+    %}
+    <label for="address">Address</label>
+    {% render_field studentForm.address class="form-control"
+    placeholder="Address" %}
+
+    <label for="username">Email</label>
+    {% render_field userForm.username class="form-control"
+    placeholder="Username" %}
+    <label for="password">Password</label>
+    {% render_field userForm.password class="form-control"
+    placeholder="Password" %} <br /><br />
+    <label for="profile_pic">Profile Picture</label>
+    {% render_field studentForm.profile_pic class="form-control"
+    placeholder="Profile Picture" %}
+    <br /><br />
+    <input type="submit" value="Update" />
   </form>
 </div>
 <script>
-  const form = document.querySelector('form');
+  const form = document.querySelector("form");
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#id_username').value;
-    const password = document.querySelector('#id_password').value;
-    const firstName = document.querySelector('#id_first_name').value;
-    const lastName = document.querySelector('#id_last_name').value;
-    const mobile = document.querySelector('#id_mobile').value;
-    const address = document.querySelector('#id_address').value;
-    const profilePic = document.querySelector('#id_profile_pic').value;
+    const username = document.querySelector("#id_username").value;
+    const password = document.querySelector("#id_password").value;
+    const firstName = document.querySelector("#id_first_name").value;
+    const lastName = document.querySelector("#id_last_name").value;
+    const mobile = document.querySelector("#id_mobile").value;
+    const address = document.querySelector("#id_address").value;
+    const profilePic = document.querySelector("#id_profile_pic").value;
 
     // Email validation
     if (!validateEmail(username)) {
-      alert('Invalid email address');
+      alert("Invalid email address");
       return;
     }
 
     // Password strength validation
     if (!validatePassword(password)) {
-      alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number');
+      alert(
+        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number"
+      );
       return;
     }
 
     // Phone number format validation
     if (!validateMobile(mobile)) {
-      alert('Invalid mobile number');
+      alert("Invalid mobile number");
       return;
     }
 
     // Address format validation
     if (!validateAddress(address)) {
-      alert('Invalid address');
+      alert("Invalid address");
       return;
     }
 
     // Profile picture validation
     if (!validateProfilePic(profilePic)) {
-      alert('Invalid profile picture');
+      alert("Invalid profile picture");
       return;
     }
 
@@ -127,7 +143,7 @@
 
   // Phone number format validation function
   function validateMobile(mobile) {
-    const mobileRegex =  /^[\d\s\(\)\-\.]{8,20}$/;
+    const mobileRegex = /^[\d\s\(\)\-\.]{8,20}$/;
     return mobileRegex.test(mobile);
   }
 
@@ -144,6 +160,5 @@
   }
 </script>
 
-
-<br><br><br><br><br><br><br><br>
+<br /><br /><br /><br /><br /><br /><br /><br />
 {% endblock content %}

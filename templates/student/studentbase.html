@@ -8,13 +8,13 @@
       a:link {
         text-decoration: none;
       }
-      
+
       body {
         margin: 0;
         padding: 0;
-        font-family: 'Gill Sans', sans-serif;
+        font-family: "Gill Sans", sans-serif;
       }
-      
+
       header {
         position: fixed;
         background: #22242a;
@@ -23,7 +23,7 @@
         z-index: 1;
         visibility: visible;
       }
-      
+
       .left_area h3 {
         color: #fff;
         margin: 0px;
@@ -31,11 +31,11 @@
         font-size: 22px;
         font-weight: 900;
       }
-      
+
       .left_area span {
         color: #19b3d3;
       }
-      
+
       .logout_btn {
         padding: 5px;
         background: #19b3d3;
@@ -49,11 +49,11 @@
         color: #fff;
         transition: 0.5s;
       }
-      
+
       .logout_btn:hover {
         background: #0b87a6;
       }
-      
+
       .sidebar {
         background: #2f323a;
         margin-top: 70px;
@@ -65,19 +65,19 @@
         transition: 0.5s;
         transition-property: left;
       }
-      
+
       .sidebar .profile_image {
         width: 100px;
         height: 100px;
         border-radius: 100px;
         margin-bottom: 10px;
       }
-      
+
       .sidebar h4 {
         color: #ccc;
         margin-top: 0;
       }
-      
+
       .sidebar a {
         color: #fff;
         display: block;
@@ -88,18 +88,18 @@
         box-sizing: border-box;
         transition: 0.5s;
       }
-      
+
       .sidebar a:hover {
         background: #19b3d3;
       }
-      
+
       .sidebar i {
         padding-right: 10px;
       }
-      
+
       label #sidebar_btn {
         z-index: 1;
-        
+
         color: #fff;
         position: fixed;
         cursor: pointer;
@@ -109,25 +109,25 @@
         transition: 0.5s;
         transition-property: color;
       }
-      
+
       label #sidebar_btn:hover {
         color: #19b3d3;
       }
-      
+
       #check:checked ~ .sidebar {
         left: -190px;
       }
-      
+
       #check:checked ~ .sidebar a span {
         display: none;
       }
-      
+
       #check:checked ~ .sidebar a {
         font-size: 20px;
         margin-left: 170px;
         width: 80px;
       }
-      
+
       .content {
         margin-left: 250px;
         background: url(background.png) no-repeat;
@@ -136,17 +136,20 @@
         height: 100vh;
         transition: 0.5s;
       }
-      
+
       #check:checked ~ .content {
         margin-left: 60px;
       }
-      
+
       #check {
         display: none;
       }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -155,16 +158,22 @@
 
     <header>
       <script>
-        document.addEventListener('contextmenu', function (e) {
-          e.preventDefault()
-        })
-        history.pushState(null, null, window.location.href)
+        document.addEventListener("contextmenu", function (e) {
+          e.preventDefault();
+        });
+        history.pushState(null, null, window.location.href);
         window.onpopstate = function () {
-          history.pushState(null, null, window.location.href)
-        }
+          history.pushState(null, null, window.location.href);
+        };
       </script>
 
-      <label for="check"><i style="left: 200px;margin-top: 17px;" class="fas fa-bars" id="sidebar_btn"></i></label>
+      <label for="check"
+        ><i
+          style="left: 200px; margin-top: 17px"
+          class="fas fa-bars"
+          id="sidebar_btn"
+        ></i
+      ></label>
       <div class="left_area">
         <h3>Online Quiz</h3>
       </div>
@@ -177,25 +186,33 @@
     <!-- header area end -->
     <!-- sidebar start -->
 
-    <div class="sidebar" style="font-size: 19px;">
+    <div class="sidebar" style="font-size: 19px">
       <center>
-        <img src="{% static 'image/student.png' %}" class="profile_image" alt="" />
+        <img
+          src="{% static 'image/student.png' %}"
+          class="profile_image"
+          alt=""
+        />
         <h4>{{ request.user.first_name }}</h4>
-        <h6 style="color: rgb(255, 255, 255); align-items: center;"></h6>
+        <h6 style="color: rgb(255, 255, 255); align-items: center"></h6>
       </center>
       <a href="/student/profile"><i></i><span>My Profile</span></a>
-      <a href="/student/student-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-      <a href="/student/student-exam"><i class="fas fa-book"></i><span>Exam</span></a>
-      <a href="/student/student-marks"><i class="fas fa-sort-numeric-up"></i><span>Marks</span></a>
+      <a href="/student/student-dashboard"
+        ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a
+      >
+      <a href="/student/student-exam"
+        ><i class="fas fa-book"></i><span>Exam</span></a
+      >
+      <a href="/student/student-marks"
+        ><i class="fas fa-sort-numeric-up"></i><span>Marks</span></a
+      >
     </div>
     <!-- sidebar end -->
 
     <!-- content start -->
     <div class="content">
       <br /><br /><br /><br /><br />
-      {% block content %}
-
-      {% endblock %}
+      {% block content %} {% endblock %}
 
       <br /><br /><br />
     </div>
